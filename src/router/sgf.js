@@ -7,15 +7,19 @@ const mid_auth = require("../middleware/auth");
 router.get("/", (req, res) => res.send("Principal de API SYNC"));
 
 //POST: endpoint para consultar las facturas relacionadas con un cliente, en un periodo de tiempo. Requiere token para autenticar el logueo.
-router.post("/conectar", function (req, res) {
-wpp_controller.conectApi(req, res)
+/* router.post("/conectar", function (req, res) {
+    sgf_controller.conectApi(req, res)
 .catch (err => console.log("unexpected error: " + err) )
-})
+}) */
 
 router.get("/status",function (req, res) {
     sgf_controller.status(req, res)
 })
      
+router.post("/consultar", function (req, res) {
+    sgf_controller.consultar(req, res)
+})
+
 module.exports = router;
 
 

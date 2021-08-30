@@ -20,6 +20,14 @@ router.post("/consultar", function (req, res) {
     sgf_controller.consultar(req, res)
 })
 
+router.post("/consultar_entidades", function (req, res) {
+    sgf_controller.consultar_entidades(req, res)
+})
+
+router.post("/consultar_precio_individual", function (req, res) {
+    sgf_controller.consultar_precio_individual(req, res)
+})
+
 module.exports = router;
 
 

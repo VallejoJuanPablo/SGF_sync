@@ -3,7 +3,11 @@ const db = require("../config/database");
 
 //Controlador de usuarios , contiene todas la funciones realcionadas con el usuario.
 module.exports.consultar = async (req, res) => {
+  const codfarmacia = req.body.codfarmacia;
+const codpami = req.body.codpami;
+const cuit = req.body.cuit;
   const entidad = req.body.entidad;
+  log(codfarmacia,cuit,codpami,"consultar",entidad);
   const sql = "SELECT * from productos where entidadimportarprecio = '"+ entidad +"' LIMIT 10";
   db.query(sql)
     .then((productos) => {
@@ -23,7 +27,10 @@ module.exports.consultar = async (req, res) => {
 };
 
 module.exports.consultar_entidades = async (req, res) => {
-
+  const codfarmacia = req.body.codfarmacia;
+  const codpami = req.body.codpami;
+  const cuit = req.body.cuit;
+  log(codfarmacia,cuit,codpami,"consultar_entidades","");
   const sql = "SELECT id as codigo,entidad,descr from entidades";
   db.query(sql)
     .then((entidades) => {
@@ -44,6 +51,10 @@ module.exports.consultar_entidades = async (req, res) => {
 
 module.exports.consultar_precio_individual = async (req, res) => {
 const codbarra = req.body.codbarra;
+const codfarmacia = req.body.codfarmacia;
+const codpami = req.body.codpami;
+const cuit = req.body.cuit;
+log(codfarmacia,cuit,codpami,"consultar_precio_individual",codbarra);
   const sql = "SELECT codproducto,fraccionado,precioventaunidad from productos where codigobarra='"+codbarra+"'";
   db.query(sql)
     .then((entidades) => {
@@ -61,6 +72,18 @@ const codbarra = req.body.codbarra;
       });
     });
 };
+
+
+function log (codfarmacia,cuit,codpami,endpoint,datos){
+  const sql = "INSERT into log (codfarmacia,cuit,codpami,endpoint,datos) VALUES ('"+codfarmacia+"','"+cuit+"','"+codpami+"','"+endpoint+"','"+datos+"')";
+  db.query(sql)
+    .then((result) => {
+      return true
+    })
+    .catch((err) => {
+      return false
+    });
+}
 
 //STATUS
 module.exports.status = async (req, res) => {

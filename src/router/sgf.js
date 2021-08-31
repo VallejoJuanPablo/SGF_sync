@@ -16,15 +16,15 @@ router.get("/status",function (req, res) {
     sgf_controller.status(req, res)
 })
      
-router.post("/consultar", function (req, res) {
+router.post("/consultar",mid_auth, function (req, res) {
     sgf_controller.consultar(req, res)
 })
 
-router.post("/consultar_entidades", function (req, res) {
+router.post("/consultar_entidades",mid_auth, function (req, res) {
     sgf_controller.consultar_entidades(req, res)
 })
 
-router.post("/consultar_precio_individual", function (req, res) {
+router.post("/consultar_precio_individual",mid_auth, function (req, res) {
     sgf_controller.consultar_precio_individual(req, res)
 })
 

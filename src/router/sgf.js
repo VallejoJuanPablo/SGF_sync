@@ -28,6 +28,9 @@ router.post("/consultar_precio_individual",mid_auth, function (req, res) {
     sgf_controller.consultar_precio_individual(req, res)
 })
 
+router.post("/consultar_precio_individual_entidad",mid_auth, function (req, res) {
+    sgf_controller.consultar_precio_individual_entidad(req, res)
+})
 module.exports = router;
 
 

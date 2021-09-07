@@ -74,6 +74,33 @@ log(codfarmacia,cuit,codpami,"consultar_precio_individual",codbarra);
 };
 
 
+module.exports.consultar_precio_individual_entidad = async (req, res) => {
+  const codbarra = req.body.codbarra;
+  const codfarmacia = req.body.codfarmacia;
+  const codpami = req.body.codpami;
+  const cuit = req.body.cuit;
+  const entidad = req.body.entidad;
+  log(codfarmacia,cuit,codpami,"consultar_precio_individual_entidad",codbarra);
+    const sql = "SELECT codproducto,fraccionado,precioventaunidadsugerido,entidadimportarprecio from productos_"+entidad+" where codigobarra='"+codbarra+"' and entidadimportarprecio='"+entidad+"'";
+    db.query(sql)
+      .then((entidades) => {
+        return res.status(200).send({
+          status: 200,
+          message: "Operacion Correcta",
+          response: entidades[0],
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).send({
+          status: 500,
+          message: "Error conectando BD.",
+        });
+      });
+  };
+
+
+
 function log (codfarmacia,cuit,codpami,endpoint,datos){
   const sql = "INSERT into log (codfarmacia,cuit,codpami,endpoint,datos) VALUES ('"+codfarmacia+"','"+cuit+"','"+codpami+"','"+endpoint+"','"+datos+"')";
   db.query(sql)

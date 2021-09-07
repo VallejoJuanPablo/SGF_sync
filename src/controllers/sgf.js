@@ -8,7 +8,7 @@ const codpami = req.body.codpami;
 const cuit = req.body.cuit;
   const entidad = req.body.entidad;
   log(codfarmacia,cuit,codpami,"consultar",entidad);
-  const sql = "SELECT * from productos where entidadimportarprecio = '"+ entidad +"'";
+  const sql = "SELECT * from productos_"+entidad+" where entidadimportarprecio = '"+ entidad +"'";
   db.query(sql)
     .then((productos) => {
       return res.status(200).send({

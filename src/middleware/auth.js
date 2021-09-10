@@ -2,7 +2,8 @@ const db = require("../config/database");
 //Middleware , usado para comprobar la autenticación de usuario.
 
 function isAuth(req, res, next) {
-    
+    console.log(req.headers.authorization);
+    console.log(req);
 const codfarmacia = req.body.codfarmacia;
 const codpami = req.body.codpami;
 const cuit = req.body.cuit;

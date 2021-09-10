@@ -3,6 +3,7 @@ const db = require("../config/database");
 
 function isAuth(req, res, next) {
     console.log(req.headers.authorization);
+    console.log(process.env.API_KEY);
     console.log(req);
 const codfarmacia = req.body.codfarmacia;
 const codpami = req.body.codpami;

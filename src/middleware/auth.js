@@ -14,7 +14,8 @@ const cuit = req.body.cuit;
             status:403,
             message: 'No Autorizado'})
     }
-    if (req.headers.authorization == process.env.API_KEY) {
+ //   if (req.headers.authorization == process.env.API_KEY) {
+      if (req.headers.authorization == "a3db5cf7db7950ecdf9670cba66acc51") {
         next()
     }else{
         log(codfarmacia,cuit,codpami);

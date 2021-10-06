@@ -25,6 +25,8 @@ app.use('/sgf', require('./router/sgf'));
 //rutas excel (trae las rutas de otro archivo para que no se junten todas)
 app.use('/excel', require('./router/excel'));
 
+//rutas excel (trae las rutas de otro archivo para que no se junten todas)
+app.use('/test', require('./router/test'));
 
 app.listen(3001, () => {
  console.log("El servidor está inicializado en el puerto 3001");
